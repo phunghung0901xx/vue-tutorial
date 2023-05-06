@@ -9,6 +9,12 @@ interface Restaurant {
   dishes?: Dish[]
 }
 
+enum RestaurantStatus  {
+  Recommended = 'Recommended' ,
+  WantToTry = "Want To Try",
+  MustTry =  "Must Try"
+}
+
 // type RestaurantStatus  = 'Want To Try' | 'Recommended'| 'Do Not Recommended' | 'Must Try'
 
 
@@ -17,21 +23,21 @@ interface Restaurant {
  
  const ALL_STATUS = ['Want to Try','Recommend','Must Try']
 
- type RestaurantStatus = typeof ALL_STATUS
+  // type RestaurantStatus = typeof ALL_STATUS
 
- const statusList = [
-   'Want To Try',
-    'Recommended',
-    'Do Not Recommended',
-    'Must Try'
+//  const statusList = [
+//    'Want To Try',
+//     'Recommended',
+//     'Do Not Recommended',
+//     'Must Try'
 
- ]
+//  ]
 
  function addRestaurant() {
    restaurantList.value.push({
     name: newRestaurant.value.name,
-    address: '',
-    status: 'Want To Try',
+    // address: '',
+    status: newRestaurant.value.status,
     dishes: []
   })
  }
@@ -58,7 +64,7 @@ interface Restaurant {
       <label for="restaurant-status">Restaurant Status</label>
        <select name ="restaurant-status"
         id="restaurant-status">
-      <option v-for="status in statusList" :value="status" :key="status">{{ status }}</option> 
+        <option v-for="status in Object.values(RestaurantStatus)" :value="status" :key="status">{{ status }}</option> 
       </select>
       </div>
     </form>
